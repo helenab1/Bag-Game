@@ -3,6 +3,11 @@ import java.util.Scanner;
 import stdlib.StdOut;
 import stdlib.StdIn;
 
+/* Game  class */
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class ArrayBag implements Bag {
 	
 	// The array used to store items in the bag
@@ -199,6 +204,7 @@ public class ArrayBag implements Bag {
         System.out.println("bag 1 = " + bag1);
         System.out.println();*/
 		
+		/* tests 1/8/2020
 		// Create an ArrayBag named bag1.
         ArrayBag bag1 = new ArrayBag(DEFAULT_MAX_SIZE);
         bag1.add("HE");
@@ -218,8 +224,39 @@ public class ArrayBag implements Bag {
         Object[] items = bag1.toArray();
         for (int i = 0; i < items.length; i++) {
             System.out.println(items[i]);
+        } */
+        
+        /* Testing functionality will be moved to method main in game class */
+        
+        // create int array of 20 possibilities (1-20)
+        Integer[] maxStories = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+        
+        // shuffle Class!
+        List<Integer> intList = Arrays.asList(maxStories);
+		Collections.shuffle(intList);
+		intList.toArray(maxStories);
+		System.out.println(Arrays.toString(maxStories));
+        
+        // take first ten
+		Integer[] currStories = new Integer[10];
+		for(int i = 0; i < currStories.length; i++) { 
+        	currStories[i] = maxStories[i];
+		}
+		System.out.println(Arrays.toString(currStories));
+        
+        // create new bag with those ten grabbed numbers
+		ArrayBag bagOfStories = new ArrayBag(10);	// need to change default sizes in declaration
+		for (int i = 0; i < 10; i++) {
+            bagOfStories.add(currStories[i]);
         }
+        System.out.println("bagOfStories = " + bagOfStories);
         System.out.println();
+        
+        Object[] items = bagOfStories.toArray();	// nodes have item from currStories
+        for (int i = 0; i < items.length; i++) {
+            System.out.println(items[i]);
+        }
+   
     }
 }
 
