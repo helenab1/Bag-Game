@@ -9,17 +9,36 @@ public class Game {
 	
 	Integer[] totalStories = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}; 
 	final int MAX = 10;
-	int starHealth = 1;
-	int heartHealth = 5;
 	boolean currStatus = false;	// changes true after didYouLose() or didYouWin()
+	private Integer[] currStories;
 	
+	// private class?
 	// display image 
 	// menu
 	
 	/*
+	 * shuffles totalStories and takes first 10 to get set of random, non-repeating numbers to read from
+	 */
+	public Integer[] getChapterList(Integer[] totalStories) {
+		// shuffle Class!
+        List<Integer> intList = Arrays.asList(this.totalStories);
+		Collections.shuffle(intList);
+		intList.toArray(this.totalStories);
+		System.out.println(Arrays.toString(this.totalStories));
+        
+        // take first ten
+		Integer[] currStories = new Integer[this.MAX];
+		for(int i = 0; i < currStories.length; i++) { 
+        	currStories[i] = this.totalStories[i];
+		}
+		System.out.println(Arrays.toString(currStories));
+		return currStories;		
+	}
+	
+	/*
 	 * after game loop reads from Chapter file, update score
 	 */
-	public void updateScore(int starPoints, int heartPoints) {
+	public void updateScore(int s, int h) {
 		
 	}
 	
@@ -46,34 +65,24 @@ public class Game {
 	
 	public static void main(String[] args) {
 		
-		Game myGame = new Game();
-        
-        // shuffle Class!
-        List<Integer> intList = Arrays.asList(myGame.totalStories);
-		Collections.shuffle(intList);
-		intList.toArray(myGame.totalStories);
-		System.out.println(Arrays.toString(myGame.totalStories));
-        
-        // take first ten
-		Integer[] currStories = new Integer[myGame.MAX];
-		for(int i = 0; i < currStories.length; i++) { 
-        	currStories[i] = myGame.totalStories[i];
-		}
-		System.out.println(Arrays.toString(currStories));
-        
-        
+		Game g = new Game();
+		g.currStories = g.getChapterList(g.totalStories);
+		
+		// create Chapter item
+        Chapter currChapter = new Chapter();	
+    
         /*
          * example game loop outline
          */
-		// create Chapter item
-        Chapter currChapter = new Chapter();	
         
         // game loop changes currChapter's num to next in array
-        for(int i = 0; i < myGame.MAX; i++) {
-        	currChapter.num = currStories[i];
-        	StdOut.println(currChapter.num);
+        for(int i = 0; i < g.MAX; i++) {
+        	currChapter.num = g.currStories[i];
+        	
         	// all chapter methods
-        	// Game updating score methods
+        	// score is returned at end
+        	// added to Player object
+        	// then checked against Game's loss and win
         	
         	/*
         	 * loop will check if lost each time
@@ -82,7 +91,7 @@ public class Game {
         	}
         	*/
         }       
-        myGame.currStatus = youWin();
+        g.currStatus = youWin();
     }
 }
 

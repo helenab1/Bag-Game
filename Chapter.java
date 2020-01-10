@@ -8,6 +8,7 @@ public class Chapter {
 	
 	// file input
 	String Y, N, RespY, RespN, FSY, FSN, FPar;
+	int stars, hearts;
 	
 	public Chapter() {
 		// TODO Auto-generated constructor stub
@@ -46,6 +47,13 @@ public class Chapter {
 	public String createFinalParagraph(String x) {
 		// keep concatenating responses onto final sentences
 		return FPar;
+	}
+	
+	public int returnScores(int s, int h) {
+		// scores read from file to Chapter var
+		// returned to main
+		// then added to Player class
+		return -1;
 	}
 	
 	public static void main(String[] args) {
