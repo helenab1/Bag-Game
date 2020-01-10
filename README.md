@@ -1,2 +1,2 @@
-# Bag-Game
-Text-adventure  game using random selection of story nodes in a bag.
+# YesNo-Text-Adventure
+Text-adventure game engine.
