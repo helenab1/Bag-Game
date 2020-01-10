@@ -7,8 +7,42 @@ import stdlib.StdOut;
 
 public class Game {
 	
-	public Integer[] totalStories = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}; 
-	public final int MAX = 10;
+	Integer[] totalStories = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}; 
+	final int MAX = 10;
+	int starHealth = 1;
+	int heartHealth = 5;
+	boolean currStatus = false;	// changes true after didYouLose() or didYouWin()
+	
+	// display image 
+	// menu
+	
+	/*
+	 * after game loop reads from Chapter file, update score
+	 */
+	public void updateScore(int starPoints, int heartPoints) {
+		
+	}
+	
+	/*
+	 * checks at end of turn if either health bar is < 0 or > 10, and if  you
+	 * lost then it ends the game
+	 */
+	public static boolean didYouLose(int starHealth, int heartHealth) {
+		// display final par.
+		return false;
+	}
+	
+	public void youLose() {
+		StdOut.println("Thanks for playing!");
+		//
+	}
+	
+	public static boolean youWin() {		// made it through loop, so this doesn't need parameters
+		// display final par.
+		return true;
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		
@@ -38,7 +72,18 @@ public class Game {
         for(int i = 0; i < myGame.MAX; i++) {
         	currChapter.num = currStories[i];
         	StdOut.println(currChapter.num);
-        }
-	}
-
+        	// all chapter methods
+        	// Game updating score methods
+        	
+        	/*
+        	 * loop will check if lost each time
+        	if(didYouLose) {
+        		youLost();
+        	}
+        	*/
+        }       
+        myGame.currStatus = youWin();
+    }
 }
+
+
