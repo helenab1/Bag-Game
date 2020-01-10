@@ -1,2 +1,2 @@
-# YesNo-Text-Adventure
+# YesNo Text Adventure
 Text-adventure game engine.
