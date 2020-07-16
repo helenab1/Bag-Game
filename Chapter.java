@@ -1,7 +1,9 @@
 package main;
 
 public class Chapter {
-
+	
+	// will be deleted. incorporating into readfile/player classes and using states to represent text file line to read instead.
+	
 	int num;
 	String choice;
 	int input;
@@ -9,6 +11,8 @@ public class Chapter {
 	// file input
 	String Y, N, RespY, RespN, FSY, FSN, FPar;
 	int stars, hearts;
+	
+	ReadFile r = new ReadFile("C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\lvl1.txt");
 	
 	public Chapter() {
 		// TODO Auto-generated constructor stub

@@ -12,7 +12,7 @@ FsY_Final sentence displayed after choice is made (if any) to player's yes ans.
 FsN_Final sentence displayed after choice is made (if any) to player's yes ans.
 
 FpY_sentence (if any) to concat. for yes ans. to final par. display at end of lvl
-FpN_sentence (if any) to concat. for no ans. to final par. display at end of lvl
+FpN_sentence (if any) to concat. for no ans. to final par. display at end of lvl - (each one will take 5 lines)
 ---------------------------------------------------------------------------------------
 01_
 

@@ -11,8 +11,10 @@ public class Game {
 	final int MAX = 10;
 	boolean currStatus = false;	// changes true after didYouLose() or didYouWin()
 	private Integer[] currStories;
+	int currentStory = 0;
+	int lineToRead = currentStory; // in readfile for testing now
 	
-	// private class?
+	
 	// display image 
 	// menu
 	
@@ -35,10 +37,14 @@ public class Game {
 		return currStories;		
 	}
 	
+	
+	
 	/*
 	 * after game loop reads from Chapter file, update score
 	 */
 	public void updateScore(int s, int h) {
+		//if currstories[i] < 10 (or something) update +1 for yes, - 1 for no
+		//if currstories[i] > 10 && < 15 (or something) update +2 for yes, -2 for no, etc... (make a bigger difference, though)
 		
 	}
 	
@@ -63,10 +69,13 @@ public class Game {
 	
 	
 	
-	public static void main(String[] args) {
+	public static void main1(String[] args) {
 		
 		Game g = new Game();
 		g.currStories = g.getChapterList(g.totalStories);
+		
+		Player p = new Player();
+		
 		
 		// create Chapter item
         Chapter currChapter = new Chapter();	
