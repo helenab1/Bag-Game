@@ -7,6 +7,7 @@ public class Player {
 	
 	int starHealth;
 	int heartHealth;
+	//public static int state = 1;
 
 	public Player() {
 		// TODO Auto-generated constructor stub

@@ -15,7 +15,7 @@ public class ReadFile {
 	public static int state = State.state;
 	
 	// test array list of shuffled ints between 1 & 20
-	Integer[] totalStories = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
+	Integer[] totalStories = new Integer[] {8, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
 	
 	private String path;
 	
@@ -31,16 +31,19 @@ public class ReadFile {
 		BufferedReader textReader = new BufferedReader(fr);
 		int numberOfLines = readLines();
 		String textData = null;
-		int i;
-
-		for (i=0; i < numberOfLines; i++) {	// reads just the line specified here
-			if(i == totalStories[currentStory]) {
-				if(state == 0) {
-					textData = textReader.readLine();
-				}
+		int lineToRead = 4;
+		
+		// need something much better than this. key:value pairs.
+		for (int i = 1; i < numberOfLines; i++) {	// reads just the line specified here
+			if(i == lineToRead) {		// turn into while loop that runs through the whole state and accesses player input
+				textData = textReader.readLine();
+			}
+			else {
+				textReader.readLine(); // this is why it wasn't reading the lines properly
 			}
 		}
 		
+		//StdOut.println(textData);
 		textReader.close( );
 		//state++;
 		return textData;
@@ -78,7 +81,7 @@ public class ReadFile {
 			StdOut.println("didn't work");
 		}	
 		
-		StdOut.println(state);
+		//StdOut.println(state);
 	}
 	
 
