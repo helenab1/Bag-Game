@@ -32,8 +32,8 @@ public class ReadFile {
 		int numberOfLines = readLines();
 		String textData = null;
 		int lineToRead = 4;
+		lineToRead = findActualLineToRead(lineToRead); //WORKS!!!!!!!!!!!!!!!!!
 		
-		// need something much better than this. key:value pairs.
 		for (int i = 1; i < numberOfLines; i++) {	// reads just the line specified here
 			if(i == lineToRead) {		// turn into while loop that runs through the whole state and accesses player input
 				textData = textReader.readLine();
@@ -66,6 +66,14 @@ public class ReadFile {
 		bf.close();
 		
 		return numberOfLines;
+	}
+	
+	/*
+	 * takes the current story number to read to console and converts it to its actual position in the text file and returns position.
+	 */
+	int findActualLineToRead(int storyNumber) {
+		int actualLineToRead = ((storyNumber - 1) * 6 + 1);
+		return actualLineToRead;
 	}
 	
 	public static void main(String[] args) throws IOException {
