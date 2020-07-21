@@ -1,6 +1,8 @@
 package main;
 
 public class State {
+	
+	// can delete
 
 	public static int state = 0;
 	

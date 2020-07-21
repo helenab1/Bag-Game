@@ -8,11 +8,11 @@ import java.io.BufferedReader;
 
 public class ReadFile {
 	// testing variables
-	int currentStory = 0;
+	int currentStory = 1;
 	int lineToRead = currentStory;
 	
 	// current state of game (affects file read level)
-	public static int state = State.state;
+	int state = 0;
 	
 	// test array list of shuffled ints between 1 & 20
 	Integer[] totalStories = new Integer[] {8, 2, 3, 4, 5, 6, 7, 8, 9, 10}; 
@@ -31,7 +31,7 @@ public class ReadFile {
 		BufferedReader textReader = new BufferedReader(fr);
 		int numberOfLines = readLines();
 		String textData = null;
-		int lineToRead = 4;
+		int lineToRead = currentStory;
 		lineToRead = findActualLineToRead(lineToRead); //WORKS!!!!!!!!!!!!!!!!!
 		
 		for (int i = 1; i < numberOfLines; i++) {	// reads just the line specified here
@@ -43,9 +43,7 @@ public class ReadFile {
 			}
 		}
 		
-		//StdOut.println(textData);
 		textReader.close( );
-		//state++;
 		return textData;
 	}
 	
@@ -70,13 +68,23 @@ public class ReadFile {
 	
 	/*
 	 * takes the current story number to read to console and converts it to its actual position in the text file and returns position.
+	 *
 	 */
 	int findActualLineToRead(int storyNumber) {
 		int actualLineToRead = ((storyNumber - 1) * 6 + 1);
-		return actualLineToRead;
+		if(state == 0) {
+			return actualLineToRead;
+		}
+		else if(state == 1) {
+			actualLineToRead = actualLineToRead+1;
+			return actualLineToRead;
+		}
+		else {
+			return actualLineToRead;
+		}
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main1(String[] args) throws IOException {
 		
 		String file_name = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\test.txt";
 		
