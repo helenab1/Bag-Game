@@ -94,7 +94,6 @@ public class Game {
 			StdOut.println("final paragraph did not read String");
 		}
 		finalParagraph = finalParagraph + " " + toConcat;
-		StdOut.println(finalParagraph);
 		return finalParagraph;
 	}
 	
@@ -146,6 +145,10 @@ public class Game {
 			// display score
 			StdOut.println(p.score);
 			StdOut.println("\n");
+			
+			if(i == (g.MAX-1)) {
+				StdOut.println(g.finalParagraph);
+			}
 		}
 		
 		
