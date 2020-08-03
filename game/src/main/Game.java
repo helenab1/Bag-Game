@@ -41,20 +41,6 @@ public class Game {
 		return currStories;		
 	}
 	
-	
-	
-	/*
-	 * after game loop reads from Chapter file, update score
-	 */
-	public void updateScore(int s, int h) {
-		//if currstories[i] < 10 (or something) update +1 for yes, - 1 for no
-		//if currstories[i] > 10 && < 15 (or something) update +2 for yes, -2 for no, etc... (make a bigger difference, though)
-		
-		// for now, score will always be +1 for yes, -1 for no
-		
-		
-	}
-	
 	/*
 	 * checks at end of turn if either health bar is < 0 or > 10, and if  you
 	 * lost then it ends the game
@@ -65,6 +51,7 @@ public class Game {
 	}
 	
 	public void youLose() {
+		//different situations of death to display after the final sentence (depending on level)
 		StdOut.println("Thanks for playing!");
 		//
 	}
@@ -141,14 +128,26 @@ public class Game {
 			}
 			
 			// reset state
-			r.state = 0; 
+			r.state = 0;
+			
+			// update score
+			p.score = p.getCurrentScore(p.choice);
+			
 			// display score
 			StdOut.println(p.score);
 			StdOut.println("\n");
 			
+			// check if either score is 0, then changes i to read final paragraph so game ends.
+			if(p.didYouLose(p.starHealth, p.heartHealth) == true) {
+				StdOut.println("YOU DIED!");
+				i = g.MAX - 1;
+			}
+			
 			if(i == (g.MAX-1)) {
 				StdOut.println(g.finalParagraph);
 			}
+			
+			// did you lose?
 		}
 		
 		
