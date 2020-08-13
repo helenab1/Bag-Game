@@ -1,69 +1,77 @@
 package main;
 
+import java.util.Arrays;
+
 import org.javatuples.Pair;
 import stdlib.StdOut;
 
 
 public class Score {
 	
-	// pair object
+	final int MAX = 40;
+	final int LEVEL_MAX = 20;
 	
-	// read from file the values of the level (will use file)
-	String levelExample;
+	int yesPos, noPos;
 	
-	//array of pairs
-	Pair scores[] = new Pair[20];
+	@SuppressWarnings("unchecked")
+	Pair<Integer, Integer> levelScores[] = new Pair[LEVEL_MAX];	
+	String allScores[] = new String[MAX];
 	
-	// key value = levelNumer : <jNumber, kNumber> - ex. 1 : <3, -2>
-
+	Pair<Integer, Integer> health  = new Pair<Integer, Integer>(0, 0);	// change value for actual game
+	
+	// for testing a score change
+	boolean choice = true;
+	int playerPos = 5;
+	
+	@SuppressWarnings("unchecked")
 	public Score() {
-		// 40 random numbers in a row
-		// will need to account for making some j numbers negative and some k numbers positive
-		this.scores = new Pair[20];
-		this.levelExample = "15223344551122334455112233445511223344551122334455";
+		this.levelScores = new Pair[LEVEL_MAX];
+		
+		this.yesPos = 0;
+		this.noPos = 1;
+		
+		// will read from file to Str array, testing for now
+		this.allScores = new String[] { "-1", "5", "2", "-2", "-3", "3", "4", "-4", "-5", "5", "1", "-1", "-2", "2", "3", 
+				"-3", "-4", "4", "5", "-5", "-1", "1", "2", "-2", "-3", "3", "4", "-4", "-5", "5", "1", "-1", "-2", "2", "3", 
+				"-3", "4", "-4", "-5", "5", "1", "-1", "2", "-2", "3", "-3", "-4", "4", "5", "-5" };
+		
+	}
+	
+	public void readScores() {
+		for(int i = 0; i < 20; i++) {
+			Integer x = Integer.parseInt(allScores[yesPos]);
+			Integer y = Integer.parseInt(allScores[noPos]);
+			levelScores[i] = new Pair<Integer, Integer>(x,y);
+			//StdOut.println(levelScores[i].toString()); // get rid of
+			yesPos++;
+			noPos++;
+		} 
+	}
+	
+	/*
+	 * get current score (for testing, and displaying after each turn)
+	 */
+	public void updateScore(boolean choice, int playerPos) {
+		if(choice == true) { health.add(levelScores[playerPos]); }
+		if(choice == false) { 
+			// how to minus - write a score class for adding and subtracting each? adding will be from tuple class and subtracting will be changing each element to negatives
+		}
+	}
+	
+	public void displayScore() {
+		StdOut.println(health.toString());
 	}
 
 	public static void main(String[] args) {
 		
 		Score s = new Score();
-		StdOut.println(s.levelExample);
-		/*
-		//Pair<Integer, Integer> pair = new Pair<Integer, Integer>(Integer.parseInt(s.levelExample.substring(0)), Integer.parseInt(s.levelExample.substring(1)));
-		Integer x = Integer.parseInt(s.levelExample.substring(0, 1));
-		Integer y = Integer.parseInt(s.levelExample.substring(1, 2));
-		//StdOut.println(s.levelExample.substring(0, 1));
-		//StdOut.println(s.levelExample.substring(1, 2));
+		s.readScores();
 		
-		Pair<Integer, Integer> pair = new Pair<Integer, Integer>(x, y);
-		//StdOut.println(pair.toString());
+		s.playerPos = 5;
+		s.displayScore();
+		s.updateScore(true, 5);
+		s.displayScore();
 		
-		s.scores[0] = pair;
-		StdOut.println(pair.getValue(0).toString());
-		StdOut.println(pair.getValue(1).toString());
-		
-		Integer j = Integer.parseInt(s.levelExample.substring(2, 3));
-		Integer k = Integer.parseInt(s.levelExample.substring(3, 4));
-		
-		Pair<Integer, Integer> pair2 = new Pair<Integer, Integer>(j, k);
-		
-		s.scores[1] = pair2;
-		StdOut.println(pair2.getValue(0).toString());
-		StdOut.println(pair2.getValue(1).toString());
-		
-		StdOut.println(s.scores[0]);
-		StdOut.println(s.scores[1]); */
-		
-		// WORKS - loops all scores from string into pairs and prints them 
-		int j = 0;
-		int k = 1;
-		for(int i = 0; i < 20; i++) {
-			Integer x = Integer.parseInt(s.levelExample.substring(j, k));
-			Integer y = Integer.parseInt(s.levelExample.substring(j+1, k+1));
-			s.scores[i] = new Pair<Integer, Integer>(x,y);
-			StdOut.println(s.scores[i].toString());
-			j++;
-			k++;
-		} 
 	}
 
 }
