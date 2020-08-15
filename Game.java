@@ -89,11 +89,11 @@ public class Game {
 		String path = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\test.txt";
 		
 		Game g = new Game();
-		Player p = new Player();
 		Score s = new Score();
 		ReadFile r = new ReadFile(path);
 		
 		g.currStories = g.getChapterList(g.totalStories);
+		s.readScores();
 		
 		//GAME LOOP - enclose in level loop
 		for(int i = 0; i < g.MAX; i++) {
@@ -102,29 +102,29 @@ public class Game {
 			
 			String response = StdIn.readString();
 			StdOut.println(response);
-			p.choice = p.getChoice(response);
+			s.playerChoice = s.getChoice(response);
 			
 			//function
 			if(response.equals("y")) {
-				p.choice = true;	
+				s.playerChoice = true;	
 				r.state = 1;
-				StdOut.println("State = " + r.state);
+				//StdOut.println("State = " + r.state);
 			}
 			else if(response.contentEquals("n")) {
-				p.choice = false;	
+				s.playerChoice = false;	
 				r.state = 2;
-				StdOut.println("State = " + r.state);
+				//StdOut.println("State = " + r.state);
 			}
 			 
-			StdOut.println(p.choice);	
+			//StdOut.println(s.playerChoice);	
 			readFromFile(r);
 			
 			//final paragraph
-			if(p.choice == true) {
+			if(s.playerChoice == true) {
 				r.state = 3;
 				g.finalParagraph = concatFinalParagraph(g.finalParagraph, r);
 			}
-			else if(p.choice == false) {
+			else if(s.playerChoice == false) {
 				r.state = 4;
 				g.finalParagraph = concatFinalParagraph(g.finalParagraph, r);
 			}
@@ -132,24 +132,26 @@ public class Game {
 			// reset state
 			r.state = 0;
 			
+			// display scores of level for testing
+			StdOut.println("levelScore[i] is " + s.levelScores[i].toString());
+			
 			// update score
-			p.score = p.getCurrentScore(p.choice);
+			s.health = s.updateScore(s.playerChoice, i);
 			
 			// display score
-			StdOut.println(p.score);
-			StdOut.println("\n");
+			StdOut.println(s.displayScore());
+			//StdOut.println("\n");
 			
 			// check if either score is 0, then changes i to read final paragraph so game ends.
-			if(p.didYouLose(p.starHealth, p.heartHealth) == true) {
-				StdOut.println("YOU DIED!");
+			if(s.determineLoss(s.health) == true) {
+				StdOut.println("YOU DIED!"); // change to the specifics (for type of death and level) outlined in determineLoss function
 				i = g.MAX - 1;
 			}
 			
+			// removes from loop if you lose. once enclosed in level loop, also needs to account for level
 			if(i == (g.MAX-1)) {
 				StdOut.println(g.finalParagraph);
-			}
-			
-			// did you lose?
+			} 
 		}
 		
 		

@@ -1,122 +1,122 @@
-Story 1 text here. // if currStories[i] > 1; lineToRead = lineToRead + 6
-Story 1 yes response here.	// line + 1 --> lineToRead + 2
-Story 1 no response here. // line + 1 --> lineToRead + 3
-Story 1 yes final sentence. // line + 1 --> lineToRead + 4
-Story 1 no final sentence. --> lineToRead + 5
+1s__ Story 1 text here. // if currStories[i] > 1; lineToRead = lineToRead + 6
+1y__ Story 1 yes response here.	// line + 1 --> lineToRead + 2
+1n__ Story 1 no response here. // line + 1 --> lineToRead + 3
+1yf_ Story 1 yes final sentence. // line + 1 --> lineToRead + 4
+1nf_ Story 1 no final sentence. --> lineToRead + 5
 -----------------------------------
-Story 2 text here.
-Story 2 yes response here.
-Story 2 no response here.
-Story 2 yes final sentence.
-Story 2 no final sentence.
+2s__ Story 2 text here.
+2y__ Story 2 yes response here.
+2n__ Story 2 no response here.
+2yf_ Story 2 yes final sentence.
+2nf_ Story 2 no final sentence.
 -----------------------------------
-Story 3 text here.
-Story 3 yes response here.
-Story 3 no response here.
-Story 3 yes final sentence.
-Story 3 no final sentence.
+3s__ Story 3 text here.
+3y__ Story 3 yes response here.
+3n__ Story 3 no response here.
+3yf_ Story 3 yes final sentence.
+3yn_ Story 3 no final sentence.
 -----------------------------------
-Story 4 text here.
-Story 4 yes response here.
-Story 4 no response here.
-Story 4 yes final sentence.
-Story 4 no final sentence.
+4s__ Story 4 text here.
+4y__ Story 4 yes response here.
+4n__ Story 4 no response here.
+4yf_ Story 4 yes final sentence.
+4nf_ Story 4 no final sentence.
 -----------------------------------
-Story 5 text here.
-Story 5 yes response here.
-Story 5 no response here.
-Story 5 yes final sentence.
-Story 5 no final sentence.
+5s__ Story 5 text here.
+5y__ Story 5 yes response here.
+5n__ Story 5 no response here.
+5yf_ Story 5 yes final sentence.
+5nf_ Story 5 no final sentence.
 -----------------------------------
-Story 6 text here.
-Story 6 yes response here.
-Story 6 no response here.
-Story 6 yes final sentence.
-Story 6 no final sentence.
+6s__ Story 6 text here.
+6y__ Story 6 yes response here.
+6n__ Story 6 no response here.
+6yf_ Story 6 yes final sentence.
+6nf_ Story 6 no final sentence.
 -----------------------------------
-Story 7 text here.
-Story 7 yes response here.
-Story 7 no response here.
-Story 7 yes final sentence.
-Story 7 no final sentence.
+7s__ Story 7 text here.
+7y__ Story 7 yes response here.
+7n__ Story 7 no response here.
+7yf_ Story 7 yes final sentence.
+7nf_ Story 7 no final sentence.
 -----------------------------------
-Story 8 text here.
-Story 8 yes response here.
-Story 8 no response here.
-Story 8 yes final sentence.
-Story 8 no final sentence.
+8s__ Story 8 text here.
+8y__ Story 8 yes response here.
+8n__ Story 8 no response here.
+8yf_ Story 8 yes final sentence.
+8nf_ Story 8 no final sentence.
 -----------------------------------
-Story 9 text here.
-Story 9 yes response here.
-Story 9 no response here.
-Story 9 yes final sentence.
-Story 9 no final sentence.
+9s__ Story 9 text here.
+9y__ Story 9 yes response here.
+9n__ Story 9 no response here.
+9yf_ Story 9 yes final sentence.
+9nf_ Story 9 no final sentence.
 -----------------------------------
-Story 10 text here.
-Story 10 yes response here.
-Story 10 no response here.
-Story 10 yes final sentence.
-Story 10 no final sentence.
+10s_ Story 10 text here.
+10y_ Story 10 yes response here.
+10n_ Story 10 no response here.
+10yf Story 10 yes final sentence.
+10nf Story 10 no final sentence.
 -----------------------------------
-Story 11 text here.
-Story 11 yes response here.
-Story 11 no response here.
-Story 11 yes final sentence.
-Story 11 no final sentence.
+11s_ Story 11 text here.
+11y_ Story 11 yes response here.
+11n_ Story 11 no response here.
+11yf Story 11 yes final sentence.
+11nf Story 11 no final sentence.
 -----------------------------------
-Story 12 text here.
-Story 12 yes response here.
-Story 12 no response here.
-Story 12 yes final sentence.
-Story 12 no final sentence.
+12s_ Story 12 text here.
+12y_ Story 12 yes response here.
+12n_ Story 12 no response here.
+12yf Story 12 yes final sentence.
+12nf Story 12 no final sentence.
 -----------------------------------
-Story 13 text here.
-Story 13 yes response here.
-Story 13 no response here.
-Story 13 yes final sentence.
-Story 13 no final sentence.
+13s_ Story 13 text here.
+13y_ Story 13 yes response here.
+13n_ Story 13 no response here.
+13yf Story 13 yes final sentence.
+13nf Story 13 no final sentence.
 -----------------------------------
-Story 14 text here.
-Story 14 yes response here.
-Story 14 no response here.
-Story 14 yes final sentence.
-Story 14 no final sentence.
+14s_ Story 14 text here.
+14y_ Story 14 yes response here.
+14n_ Story 14 no response here.
+14yf Story 14 yes final sentence.
+14nf Story 14 no final sentence.
 -----------------------------------
-Story 15 text here.
-Story 15 yes response here.
-Story 15 no response here.
-Story 15 yes final sentence.
-Story 15 no final sentence.
+15s_ Story 15 text here.
+15y_ Story 15 yes response here.
+15n_ Story 15 no response here.
+15yf Story 15 yes final sentence.
+15nf Story 15 no final sentence.
 -----------------------------------
-Story 16 text here.
-Story 16 yes response here.
-Story 16 no response here.
-Story 16 yes final sentence.
-Story 16 no final sentence.
+16s_ Story 16 text here.
+16y_ Story 16 yes response here.
+16n_ Story 16 no response here.
+16yf Story 16 yes final sentence.
+16nf Story 16 no final sentence.
 -----------------------------------
-Story 17 text here.
-Story 17 yes response here.
-Story 17 no response here.
-Story 17 yes final sentence.
-Story 17 no final sentence.
+17s_ Story 17 text here.
+17y_ Story 17 yes response here.
+17n_ Story 17 no response here.
+17yf Story 17 yes final sentence.
+17nf Story 17 no final sentence.
 -----------------------------------
-Story 18 text here.
-Story 18 yes response here.
-Story 18 no response here.
-Story 18 yes final sentence.
-Story 18 no final sentence.
+18s_ Story 18 text here.
+18y_ Story 18 yes response here.
+18n_ Story 18 no response here.
+18yf Story 18 yes final sentence.
+18nf Story 18 no final sentence.
 -----------------------------------
-Story 19 text here.
-Story 19 yes response here.
-Story 19 no response here.
-Story 19 yes final sentence.
-Story 19 no final sentence.
+19s_ Story 19 text here.
+19y_ Story 19 yes response here.
+19n_ Story 19 no response here.
+19yf Story 19 yes final sentence.
+19nf Story 19 no final sentence.
 -----------------------------------
-Story 20 text here.
-Story 20 yes response here.
-Story 20 no response here.
-Story 20 yes final sentence.
-Story 20 no final sentence.
+20s_ Story 20 text here.
+20y_ Story 20 yes response here.
+20n_ Story 20 no response here.
+20yf Story 20 yes final sentence.
+20nf Story 20 no final sentence.
 
 
 

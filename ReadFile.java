@@ -11,6 +11,9 @@ public class ReadFile {
 	int currentStory = 1;
 	int lineToRead = currentStory;
 	
+	// index to start reading file (makes text files readable & organized)
+	final int FILE_INDEX = 5;
+	
 	// current state of game (affects file read level)
 	int state = 0;
 	
@@ -44,7 +47,7 @@ public class ReadFile {
 		}
 		
 		textReader.close( );
-		return textData;
+		return textData.substring(FILE_INDEX);
 	}
 	
 	/*
