@@ -57,6 +57,7 @@ public class ReadFile {
 		FileReader file_to_read = new FileReader(path);
 		BufferedReader bf = new BufferedReader(file_to_read);
 		
+		@SuppressWarnings("unused")
 		String aLine;
 		int numberOfLines = 0;
 		
@@ -101,7 +102,7 @@ public class ReadFile {
 	
 	public static void main1(String[] args) throws IOException {
 		
-		String file_name = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\test.txt";
+		String file_name = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\level1_stories.txt";
 		
 		try {
 			ReadFile file = new ReadFile(file_name);

@@ -74,8 +74,8 @@ public class Score {
 	public String displayScore() {
 		int moraleHealth = health.getValue0();
 		int physHealth = health.getValue1();
-		StdOut.println("morale: " + moraleHealth);
-		StdOut.println("physical: " + physHealth);
+		//StdOut.println("morale: " + moraleHealth);
+		//StdOut.println("physical: " + physHealth);
 		
 		String str1 = "";
 		String str2 = "";
@@ -104,9 +104,7 @@ public class Score {
 		else if(health.getValue1() >= 10) {
 			//display sentence for losing by too much health for level
 			return true;
-		}
-		
-		
+		}		
 		return false;
 	}
 	
