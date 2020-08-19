@@ -15,20 +15,28 @@ public class Game {
 	final int MAX_LEVELS = 3; // testing with low number. can adjust to whatever I end up wanting for the first game.
 	
 	Integer[] totalStories = new Integer[20];
-	//Integer[] totalStories = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}; // can add as many stories as there are in your text file
-	boolean currStatus = false;	// changes true after didYouLose() or didYouWin()
+	boolean currStatus = false;	
 	private Integer[] currStories;
 	int currentStory = 1;
 	int lineToRead = currentStory; // in readfile for testing now
 	String finalParagraph = "";
-	boolean youLost=false;
+	boolean youLost = false;
 	
-	public void mainMenu() {
+	public static boolean playingGame = false;
 	
+	public static void mainMenu() {
+		StdOut.println("You're in the main menu now.");
+		StdOut.println("Welcome. Please select 1 to play the game and 2 to uh, not play.");
+		
+		int x = 0;
+		x = StdIn.readInt();
+		
+		if(x == 1) { playGame(); }
+		if(x == 2) { StdOut.println("Don't play game."); }
 	}
 	
-	public void displayImage() {
-		
+	public static void displayImage() {
+		StdOut.println("The ASCII image for the level should be displayed here.");
 	}
 	
 	public void initializeStoryArray() {
@@ -62,7 +70,7 @@ public class Game {
 		//
 	}
 	
-	public static boolean youWin() {		// made it through loop, so this doesn't need parameters
+	public static boolean youWin() {		
 		// display final par.
 		// win level and onto the next
 		return true;
@@ -121,7 +129,10 @@ public class Game {
 		g.initializeStoryArray();
 	
 		// easier to test when I can make it through a level
-		for(int i = 1; i <= g.MAX_LEVELS; i++) {	
+		for(int i = 1; i <= 1; i++) {	
+			displayImage();
+			
+			StdOut.println("You're in the main game loop now.");
 			String level = ("level" + i + "_stories.txt");	
 			String path = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\" + level;
 		
@@ -169,13 +180,16 @@ public class Game {
 			
 			// you lost in inner loop, so do not move on to next level
 			if(g.youLost == true) {
+				StdOut.println("You lost and should be returned to the main menu.");
 				return;
 			}
 		}
 	}
 	
 	public static void main(String[] args) {
-		playGame();
+		while(!playingGame) {
+			mainMenu();
+		}
 	}
 }
 
