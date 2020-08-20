@@ -51,6 +51,26 @@ public class ReadFile {
 	}
 	
 	/*
+	 * opens file, gets number of lines, reads score into string array and returns.
+	 */
+	public String[] OpenFileScores() throws IOException {
+		FileReader fr = new FileReader(path);
+		BufferedReader textReader = new BufferedReader(fr);
+		int numberOfLines = readLines();
+		String[] textData = new String[numberOfLines];
+		String aLine = "";
+		
+		for (int i = 0; i < numberOfLines; i++) {	
+				aLine = textReader.readLine();
+				textData[i] = aLine.substring(FILE_INDEX);
+				//StdOut.println("Str array at index " + i + " = " + textData[i]);
+		}
+		
+		textReader.close( );
+		return textData;
+	}
+	
+	/*
 	 * readLines() finds the max amount of lines in the text file to read from
 	 */
 	int readLines() throws IOException {
@@ -100,18 +120,22 @@ public class ReadFile {
 		}
 	}
 	
-	public static void main1(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 		
-		String file_name = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\level1_stories.txt";
+		String file_name = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\level1_scores.txt";
 		
+		String[] strArray = new String[40];
 		try {
 			ReadFile file = new ReadFile(file_name);
-			String lineToRead = file.OpenFile();
-			StdOut.println(lineToRead) ;
+			strArray = file.OpenFileScores();
 		}
 		catch (IOException e) {
 			StdOut.println("didn't work");
 		}	
+		
+		for(int i = 0; i < strArray.length; i++) {
+			StdOut.println(strArray[i]);
+		}
 		
 		//StdOut.println(state);
 	}

@@ -1,5 +1,7 @@
 package main;
 
+import java.io.IOException;
+
 import org.javatuples.Pair;
 import stdlib.StdOut;
 
@@ -23,6 +25,9 @@ public class Score {
 	boolean choice = true;
 	int playerPos = 5;
 	
+
+	ReadFile file = new ReadFile(null);
+	
 	@SuppressWarnings("unchecked")
 	public Score() {
 		this.levelScores = new Pair[LEVEL_MAX];
@@ -30,20 +35,29 @@ public class Score {
 		this.yesPos = 0;
 		this.noPos = 1;
 		
-		// will read from file to Str array, testing for now
+		/*will read from file to Str array, testing for now
 		this.allScores = new String[] { "-1", "5", "2", "-2", "-3", "3", "4", "-4", "-5", "5", "1", "-1", "-2", "2", "3", 
 				"-3", "-4", "4", "5", "-5", "-1", "1", "2", "-2", "-3", "3", "4", "-4", "-5", "5", "1", "-1", "-2", "2", "3", 
-				"-3", "4", "-4", "-5", "5", "1", "-1", "2", "-2", "3", "-3", "-4", "4", "5", "-5" };		
+				"-3", "4", "-4", "-5", "5", "1", "-1", "2", "-2", "3", "-3", "-4", "4", "5", "-5" };		 */
+		//this.allScores = new String[MAX];
+	}
+	
+	// initialize scores into String array
+	public void initializeScores(ReadFile file) {
+		try {
+			this.allScores = file.OpenFileScores();
+		}
+		catch (IOException e) {
+			StdOut.println("didn't work");
+		}
 	}
 	
 	// reads all scores for the level from string
 	public void readScores() {
-		for(int i = 0; i < 20; i++) {
-			Integer x = Integer.parseInt(allScores[yesPos]);
-			Integer y = Integer.parseInt(allScores[noPos]);
-			levelScores[i] = new Pair<Integer, Integer>(x,y);
-			yesPos++;
-			noPos++;
+		for(int i = 0; i < levelScores.length; i++) {
+			Integer x = Integer.parseInt(this.allScores[i * 2]);
+			Integer y = Integer.parseInt(this.allScores[i * 2 + 1]);
+			this.levelScores[i] = new Pair<Integer, Integer>(x,y); 
 		} 
 	}
 	
@@ -110,7 +124,24 @@ public class Score {
 	
 	public static void main(String[] args) {
 		
+		String path = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\level1_scores.txt";
+		ReadFile r = new ReadFile(path);
+		
 		Score s = new Score();
+		
+		s.initializeScores(r);
+		s.readScores();
+		
+		for(int i = 0; i < s.allScores.length; i++) {
+			StdOut.println(s.allScores[i]);	// is initializing perfectly into all scores 
+		}
+		
+		
+		for(int i = 0; i < 20; i++) {
+			StdOut.println(s.levelScores[i].toString());	// logic error?
+		}
+		/*
+	
 		s.readScores();
 		
 		s.playerPos = 5;
@@ -118,7 +149,7 @@ public class Score {
 		
 		s.updateScore(true, 5);
 		
-		s.displayScore();
+		s.displayScore();*/
 		
 	
 	}

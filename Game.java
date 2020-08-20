@@ -24,15 +24,22 @@ public class Game {
 	
 	public static boolean playingGame = false;
 	
-	public static void mainMenu() {
-		StdOut.println("You're in the main menu now.");
-		StdOut.println("Welcome. Please select 1 to play the game and 2 to uh, not play.");
-		
+	public static void mainMenu() {	
 		int x = 0;
-		x = StdIn.readInt();
-		
-		if(x == 1) { playGame(); }
-		if(x == 2) { StdOut.println("Don't play game."); }
+		boolean returned = false;
+		while(x == 0) {
+			if(returned == true) { StdOut.println("\n"); }
+			StdOut.println("MAIN MENU: 1) PLAY 2) INSTRUCTIONS 3) QUIT");
+			x = StdIn.readInt();
+			if(x == 1) { playGame(); x = 0; }
+			else if(x == 2) { StdOut.println("You will be faced with choices throughout your journey. Type 'y' or 'Y' for yes, 'n' or 'N' for no, then type enter."
+					+ "\nYou are trying to survive while keeping a fine balance of MORALE and physical HEALTH. Too high of health or morale and your companions may start to... resent you."
+					+ "\nToo low of health and morale and you are at the mercy of your own mind and body's weaknesses. Good luck!");
+					returned = true;
+					x = 0; }
+			else if(x == 3) { System.exit(0); }
+			else { x = 0; }
+		}
 	}
 	
 	public static void displayImage() {
@@ -98,12 +105,24 @@ public class Game {
 		return finalParagraph;
 	}
 	
+	public static void validateInput(String response) {
+		boolean checkInput = false;
+		if(response.contentEquals("Y") || response.contentEquals("N")) { checkInput = true;	}
+		
+		while(!checkInput) {
+			StdOut.println("Invalid input. Try again.");
+			response = StdIn.readString();
+			response = response.toUpperCase();
+			if(response.contentEquals("Y") || response.contentEquals("N")) { checkInput = true;	}
+		}
+	}
+	
 	public static void determinePlayerChoice(String response, ReadFile r, Score s) {
-		if(response.equals("y")) {
+		if(response.contentEquals("Y")) {
 			s.playerChoice = true;	
 			r.state = 1;
 		}
-		else if(response.contentEquals("n")) {
+		else if(response.contentEquals("N")) {
 			s.playerChoice = false;	
 			r.state = 2;
 		}
@@ -133,14 +152,19 @@ public class Game {
 			displayImage();
 			
 			StdOut.println("You're in the main game loop now.");
-			String level = ("level" + i + "_stories.txt");	
-			String path = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\" + level;
+			String level = ("level" + i);	
+			String path = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\" + level  + "_stories.txt";
+			String pathScores = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\" + level + "_scores.txt";
 		
 			Score s = new Score();
 			ReadFile r = new ReadFile(path);
 		
 			g.currStories = g.getChapterList(g.totalStories);
+			
+			ReadFile r2 = new ReadFile(pathScores);
+			s.initializeScores(r2);
 			s.readScores();
+			
 		
 			// level loop
 			for(int j = 0; j < g.MAX_READ_STORIES; j++) {
@@ -148,10 +172,13 @@ public class Game {
 				readFromFile(r);
 			
 				String response = StdIn.readString();
+				response = response.toUpperCase();
+				validateInput(response);
+				
 				s.playerChoice = s.getChoice(response);
 			
-				determinePlayerChoice(response, r, s);
-			 
+				determinePlayerChoice(response, r, s);		 
+				
 				readFromFile(r);
 			
 				determineFinalParagraphs(s.playerChoice, r, g);
@@ -180,7 +207,7 @@ public class Game {
 			
 			// you lost in inner loop, so do not move on to next level
 			if(g.youLost == true) {
-				StdOut.println("You lost and should be returned to the main menu.");
+				g.youLose();
 				return;
 			}
 		}
