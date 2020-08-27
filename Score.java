@@ -25,16 +25,17 @@ public class Score {
 	boolean choice = true;
 	int playerPos = 5;
 	
-
-	ReadFile file = new ReadFile(null);
+	
+	ReadFile scoresFile = new ReadFile(null);
 	
 	@SuppressWarnings("unchecked")
-	public Score() {
+	public Score(ReadFile scoresFile) {
 		this.levelScores = new Pair[LEVEL_MAX];
 		
 		this.yesPos = 0;
 		this.noPos = 1;
 		
+		this.scoresFile = scoresFile;
 		/*will read from file to Str array, testing for now
 		this.allScores = new String[] { "-1", "5", "2", "-2", "-3", "3", "4", "-4", "-5", "5", "1", "-1", "-2", "2", "3", 
 				"-3", "-4", "4", "5", "-5", "-1", "1", "2", "-2", "-3", "3", "4", "-4", "-5", "5", "1", "-1", "-2", "2", "3", 
@@ -71,15 +72,17 @@ public class Score {
 	
 	public Pair<Integer, Integer> updateScore(boolean choice, int playerPos) {
 		if(choice == true) { 
-			int x = health.getValue0() + levelScores[playerPos].getValue0();
-			int y = health.getValue1() + levelScores[playerPos].getValue1();
-			health  = new Pair<Integer, Integer>(x, y);			
+			int x = health.getValue0() + levelScores[playerPos-1].getValue0();
+			int y = health.getValue1() + levelScores[playerPos-1].getValue1();
+			health = new Pair<Integer, Integer>(x, y);			
+			StdOut.println("X value is: " + x + "Y value is " + y + " Pair is: " + health.toString() + " player position is: " + playerPos);
 		}	
 
 		if(choice == false) { 
-			int x = health.getValue0() - levelScores[playerPos].getValue0();
-			int y = health.getValue1() - levelScores[playerPos].getValue1();
+			int x = health.getValue0() - levelScores[playerPos-1].getValue0();
+			int y = health.getValue1() - levelScores[playerPos-1].getValue1();
 			health  = new Pair<Integer, Integer>(x, y);	
+			StdOut.println("X value is: " + x + "Y value is " + y + " Pair is: " + health.toString() + " player position is: " + playerPos);
 		}
 		
 		return health;
@@ -88,8 +91,8 @@ public class Score {
 	public String displayScore() {
 		int moraleHealth = health.getValue0();
 		int physHealth = health.getValue1();
-		//StdOut.println("morale: " + moraleHealth);
-		//StdOut.println("physical: " + physHealth);
+		StdOut.println("morale: " + moraleHealth);
+		StdOut.println("physical: " + physHealth);
 		
 		String str1 = "";
 		String str2 = "";
@@ -140,7 +143,7 @@ public class Score {
 		for(int i = 0; i < 20; i++) {
 			StdOut.println(s.levelScores[i].toString());	// logic error?
 		}
-		/*
+		
 	
 		s.readScores();
 		
@@ -149,7 +152,7 @@ public class Score {
 		
 		s.updateScore(true, 5);
 		
-		s.displayScore();*/
+		s.displayScore();
 		
 	
 	}

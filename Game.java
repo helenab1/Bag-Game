@@ -22,6 +22,10 @@ public class Game {
 	String finalParagraph = "";
 	boolean youLost = false;
 	
+	String path = "";
+	ReadFile levelStoriesReadFile = new ReadFile(path);
+	ReadFile levelScoresReadFile = new ReadFile(path);
+	
 	public static boolean playingGame = false;
 	
 	public static void mainMenu() {	
@@ -29,7 +33,7 @@ public class Game {
 		boolean returned = false;
 		while(x == 0) {
 			if(returned == true) { StdOut.println("\n"); }
-			StdOut.println("MAIN MENU: 1) PLAY 2) INSTRUCTIONS 3) QUIT");
+			StdOut.println("MAIN MENU: 1) PLAY 2) INSTRUCTIONS 3) QUIT 4) CREATE");
 			x = StdIn.readInt();
 			if(x == 1) { playGame(); x = 0; }
 			else if(x == 2) { StdOut.println("You will be faced with choices throughout your journey. Type 'y' or 'Y' for yes, 'n' or 'N' for no, then type enter."
@@ -83,7 +87,7 @@ public class Game {
 		return true;
 	}
 	
-	public static void readFromFile(ReadFile r) {
+	public void readFromFile(ReadFile r) {
 		try {
 			String lineToRead = r.OpenFile();
 			StdOut.println(lineToRead) ;
@@ -148,7 +152,7 @@ public class Game {
 		g.initializeStoryArray();
 	
 		// easier to test when I can make it through a level
-		for(int i = 1; i <= 1; i++) {	
+		for(int i = 1; i <= 1 /*num of levels?*/; i++) {	
 			displayImage();
 			
 			StdOut.println("You're in the main game loop now.");
@@ -156,20 +160,29 @@ public class Game {
 			String path = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\" + level  + "_stories.txt";
 			String pathScores = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\" + level + "_scores.txt";
 		
-			Score s = new Score();
-			ReadFile r = new ReadFile(path);
+			
+			g.levelStoriesReadFile = new ReadFile(path);
 		
 			g.currStories = g.getChapterList(g.totalStories);
 			
-			ReadFile r2 = new ReadFile(pathScores);
-			s.initializeScores(r2);
+			g.levelScoresReadFile = new ReadFile(pathScores);
+			
+			Score s = new Score(g.levelScoresReadFile);
+			
+			s.initializeScores(g.levelScoresReadFile);
 			s.readScores();
 			
+			for(int h = 0; h < s.levelScores.length; h++) {
+				StdOut.println(s.levelScores[h]);	// display all score pairs
+			}
 		
 			// level loop
-			for(int j = 0; j < g.MAX_READ_STORIES; j++) {
-				r.currentStory = g.currStories[j];
-				readFromFile(r);
+			for(int j =1; j <= g.MAX_READ_STORIES; j++) {
+				// display score
+				StdOut.println(s.displayScore());
+				
+				g.levelStoriesReadFile.currentStory = g.currStories[j];	// finds actual line to read in readfile
+				g.readFromFile(g.levelStoriesReadFile);
 			
 				String response = StdIn.readString();
 				response = response.toUpperCase();
@@ -177,20 +190,20 @@ public class Game {
 				
 				s.playerChoice = s.getChoice(response);
 			
-				determinePlayerChoice(response, r, s);		 
+				determinePlayerChoice(response, g.levelStoriesReadFile, s);		 
 				
-				readFromFile(r);
+				g.readFromFile(g.levelStoriesReadFile);
 			
-				determineFinalParagraphs(s.playerChoice, r, g);
+				determineFinalParagraphs(s.playerChoice, g.levelStoriesReadFile, g);
 			
 				// reset state for next loop
-				r.state = 0;
+				g.levelStoriesReadFile.state = 0;
 			
 				// update score
-				s.health = s.updateScore(s.playerChoice, j);
+				StdOut.println("Position in array is: " + (g.currStories[j])); // FIXED!!!!!!!!!!!!! reads correct score  
+				s.health = s.updateScore(s.playerChoice, (g.currStories[j]));	
 				
-				// display score
-				StdOut.println(s.displayScore());
+				
 			
 				// check if either score is 0, then changes i to read final paragraph so game ends.
 				if(s.determineLoss(s.health) == true) {

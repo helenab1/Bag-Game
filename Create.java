@@ -1,4 +1,4 @@
-package game2;
+package main;
 
 import java.util.Random;
 import java.io.File;
@@ -11,13 +11,15 @@ public class Create {
 	int numOfLevels;
 	int numOfStoriesPerLevel;
 	int maxDifficulty;
+	int currLevelNum;
 	private int[] scoreArrayYES;
 	private int[] scoreArrayNO;
 
-	public Create(int numOfLevels, int numOfStoriesPerLevel, int maxDifficulty) {
+	public Create(int numOfLevels, int numOfStoriesPerLevel, int maxDifficulty, int currLevelNum) {
 		this.numOfLevels = numOfLevels;
 		this.numOfStoriesPerLevel = numOfStoriesPerLevel;	// must be under 1000! or ...?
 		this.maxDifficulty = maxDifficulty; 
+		this.currLevelNum = currLevelNum;
 		this.scoreArrayYES = new int[numOfStoriesPerLevel];
 		this.scoreArrayNO = new int[numOfStoriesPerLevel];
 	}
@@ -85,23 +87,24 @@ public class Create {
 		    	e.printStackTrace();
 		    }
 	}
-	public void writeScoresToTextFile(int numOfStoriesPerLevel, int[] scoreArrayYES, int[] scoreArrayNO) {
+	public void writeScoresToTextFile(int currLevelNum, int numOfStoriesPerLevel, int[] scoreArrayYES, int[] scoreArrayNO) {
+		currLevelNum = 1;  //will loop to accept level num and write & create scores at once. increase difficulty?
 		try {
-			FileWriter myWriter = new FileWriter("level1.txt");	//will loop to accept level num and write & create scores at once
-			for(int i = 1; i <= (numOfStoriesPerLevel * 2); i++) {
+			FileWriter myWriter = new FileWriter("level" + currLevelNum + "_scores.txt");	 
+			for(int i = 1; i <= numOfStoriesPerLevel; i++) {
 				if(i < 10) {
 					myWriter.write(i + "y__ " + scoreArrayYES[i-1] + "\n");
-					myWriter.write(i + "n__ " + scoreArrayNO[i-1] + "\n");	// NEED to clean this up with less repeating. 10 gets skipped. rewrite __ string each time?
+					myWriter.write(i + "n__ " + scoreArrayNO[i-1] + "\n");	
 					//System.out.println(i + " is " + scoreArrayYES[i] + " and " + scoreArrayNO[i]);
 				}
 				else if(i >= 10 && i < 100) {
 					myWriter.write(i + "y_ " + scoreArrayYES[i-1] + "\n");	
-					myWriter.write(i + "n_ " + scoreArrayNO[i-1] + "\n");	// out of bounds error still will trace later
+					myWriter.write(i + "n_ " + scoreArrayNO[i-1] + "\n");	
 					//System.out.println(i + " is " + scoreArrayYES[i] + " and " + scoreArrayNO[i]);
 				}
-				else if(i > 100) {
-					//myWriter.write(i+1 + "y " + scoreArrayYES[i] + "\n");
-					//myWriter.write(i+1 + "n " + scoreArrayNO[i] + "\n");
+				else if(i >= 100) {
+					myWriter.write(i + "y " + scoreArrayYES[i-1] + "\n");
+					myWriter.write(i + "n " + scoreArrayNO[i-1] + "\n");
 				}
 			}
 		    myWriter.close();
@@ -118,9 +121,9 @@ public class Create {
 	
 	public static void main(String[] args) {
 		// ask for number of levels (will be number of text files generated total), number of stories per level (must be divisible by 5), & max difficulty (the highest difference between yes & no scores for determining groups)
-		Create c = new Create(1, 20, 5);
+		Create c = new Create(1, 20, 5, 1);	// int numOfLevels, int numOfStoriesPerLevel, int maxDifficulty, int currentLevelNum (will have to create scores separately)
 		c.createScores(c.numOfStoriesPerLevel, c.maxDifficulty, c.scoreArrayYES, c.scoreArrayNO);
 		c.createFile(c.numOfLevels);	// will have to change to loop to create them all
-		c.writeScoresToTextFile(c.numOfStoriesPerLevel, c.scoreArrayYES, c.scoreArrayNO);
+		c.writeScoresToTextFile(c.currLevelNum, c.numOfStoriesPerLevel, c.scoreArrayYES, c.scoreArrayNO);
 	}
 }
