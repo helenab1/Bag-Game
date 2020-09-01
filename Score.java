@@ -126,7 +126,7 @@ public class Score {
 	}
 	
 	public static void main(String[] args) {
-		
+		/*
 		String path = "C:\\Users\\helen\\Desktop\\CSC 402 - Data Structures\\eclipse-workspace\\game\\src\\main\\level1_scores.txt";
 		ReadFile r = new ReadFile(path);
 		
@@ -152,7 +152,7 @@ public class Score {
 		
 		s.updateScore(true, 5);
 		
-		s.displayScore();
+		s.displayScore();*/
 		
 	
 	}

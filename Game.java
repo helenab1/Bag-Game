@@ -109,7 +109,7 @@ public class Game {
 		return finalParagraph;
 	}
 	
-	public static void validateInput(String response) {
+	public String validateInput(String response) {
 		boolean checkInput = false;
 		if(response.contentEquals("Y") || response.contentEquals("N")) { checkInput = true;	}
 		
@@ -119,9 +119,10 @@ public class Game {
 			response = response.toUpperCase();
 			if(response.contentEquals("Y") || response.contentEquals("N")) { checkInput = true;	}
 		}
+		return response;
 	}
 	
-	public static void determinePlayerChoice(String response, ReadFile r, Score s) {
+	public void determinePlayerChoice(String response, ReadFile r, Score s) {
 		if(response.contentEquals("Y")) {
 			s.playerChoice = true;	
 			r.state = 1;
@@ -136,7 +137,7 @@ public class Game {
 		}
 	}
 	
-	public static void determineFinalParagraphs(boolean playerChoice, ReadFile r, Game g) {
+	public void determineFinalParagraphs(boolean playerChoice, ReadFile r, Game g) {
 		if(playerChoice == true) {
 			r.state = 3;
 			g.finalParagraph = concatFinalParagraph(g.finalParagraph, r);
@@ -186,15 +187,15 @@ public class Game {
 			
 				String response = StdIn.readString();
 				response = response.toUpperCase();
-				validateInput(response);
+				response = g.validateInput(response);
 				
 				s.playerChoice = s.getChoice(response);
 			
-				determinePlayerChoice(response, g.levelStoriesReadFile, s);		 
+				g.determinePlayerChoice(response, g.levelStoriesReadFile, s);		 
 				
 				g.readFromFile(g.levelStoriesReadFile);
 			
-				determineFinalParagraphs(s.playerChoice, g.levelStoriesReadFile, g);
+				g.determineFinalParagraphs(s.playerChoice, g.levelStoriesReadFile, g);
 			
 				// reset state for next loop
 				g.levelStoriesReadFile.state = 0;
@@ -215,6 +216,7 @@ public class Game {
 				if(j == (g.MAX_READ_STORIES-1)) {
 					StdOut.println(g.finalParagraph);
 					g.youLost = true;
+					return;
 				} 
 			}	
 			
